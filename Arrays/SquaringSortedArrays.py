@@ -36,7 +36,7 @@ class Solution:
         right = n - 1
         position = n - 1
         
-
+   
         while left <= right:
             left_sq = nums[left] ** 2
             right_sq = nums[right] **2 
