@@ -1,4 +1,5 @@
-class Solution:
+# Brute Force Approch
+class BruteForce:
     def threeSumClosest(self, nums: List[int], target: int) -> int:
         n = len(nums)
 
@@ -13,3 +14,35 @@ class Solution:
                         close = currentSum
 
         return close
+    
+
+
+# Solution
+class Closest:
+    def threeSumClosest(self, nums: List[int], target: int) -> int:
+        
+        nums.sort()
+        n = len(nums)
+        
+        ClosestSum = float('inf')
+
+        for i, a in enumerate(nums):
+            if i > 0 and a == nums[i -1]:
+                continue
+            
+            l, r = i + 1, len(nums) - 1
+
+            while l < r:
+                CurrentSum = a + nums[l] + nums[r]
+
+                if abs(CurrentSum - target) < abs(ClosestSum - target):
+                    ClosestSum = CurrentSum
+                
+                if CurrentSum == target:
+                    return CurrentSum
+                elif CurrentSum < target:
+                    l += 1
+                else:
+                    r -= 1
+        
+        return ClosestSum 
