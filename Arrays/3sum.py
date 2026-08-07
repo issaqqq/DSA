@@ -1,16 +1,26 @@
-class BruteForce:
-    def threeSumClosest(self, nums: List[int], target: int) -> int:
-        n = len(nums)
+class Solution:
+    def threeSum(self, nums: list[int]) -> list[list[int]]:
+        res = []
+        nums.sort()
 
-        close = nums[0] + nums[1] + nums[2]
+        for i, a in enumerate(nums):
+            if i > 0 and a == nums[i - 1]:
+                continue
+            
+        l = i + 1
+        r = len(nums) - 1
 
-        for i in range(n):
-            for j in range(n-1):
-                for k in range(n-2):
-                    currentSum = nums[i] + nums[j] + nums[k]
+        while l < r:
+            ThreeSum = a + nums[l] + nums[r]
 
-                    if abs(currentSum - target) < abs(close - target):
-                        close = currentSum
-
-
-        return close
+            if ThreeSum > 0:
+                r -= 1
+            elif ThreeSum < 0:
+                l += 1
+            else:
+                res.append( [ a, nums[l], nums[r] ] )
+                l += 1
+                while nums[l] == nums[l -1] and l < r:
+                    l += 1
+        
+        return res
